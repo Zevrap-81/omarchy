@@ -1,0 +1,15 @@
+# put this file here /etc/systemd/system/kanata.service
+
+[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:$HOME/.cargo/bin
+Environment=DISPLAY=:0
+Type=simple
+ExecStart=/usr/bin/kanata --cfg /home/parvez/.config/kanata/config.kbd
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
