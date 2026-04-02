@@ -1,0 +1,84 @@
+[general]
+destination = "$HOME/.config/hypr/monitors.conf"
+debounce_time_ms = 2500
+
+[hot_reload_section]
+# If hot reload is enabled it will wait this ms before firing an update
+debounce_time_ms = 2500
+
+[lid_events]
+
+[lid_events.dbus_query_object]
+destination = "org.freedesktop.UPower"
+path = "/org/freedesktop/UPower"
+method = "org.freedesktop.DBus.Properties.Get"
+expected_lid_closing_value = "true"
+
+[[lid_events.dbus_query_object.args]]
+arg = "org.freedesktop.UPower"
+
+[[lid_events.dbus_query_object.args]]
+arg = "LidIsClosed"
+
+[[lid_events.dbus_signal_match_rules]]
+interface = "org.freedesktop.DBus.Properties"
+object_path = "/org/freedesktop/UPower"
+member = "PropertiesChanged"
+
+[[lid_events.dbus_signal_receive_filters]]
+name = "org.freedesktop.DBus.Properties.PropertiesChanged"
+body = "LidIsClosed"
+
+
+[scoring]
+# Scoring system for profile selection when multiple profiles match
+# Higher scores win - adjust these values to prioritize different matching criteria
+name_match = 10       # Points awarded for exact monitor name match (e.g., "eDP-1")
+description_match = 10 # Points awarded for exact monitor description match
+lid_state_match = 50   # Bonus points for matching lid state requirements
+
+
+[profiles.docked]
+config_file = "/home/parvez/.config/hyprdynamicmonitors/hyprconfigs/docked.go.tmpl"
+config_file_type = "static"
+[profiles.docked.conditions]
+lid_state = "Opened"
+
+[[profiles.docked.conditions.required_monitors]]
+description = "AU Optronics 0xAF90"
+monitor_tag = "monitor0"
+
+[[profiles.docked.conditions.required_monitors]]
+description = "Acer Technologies QG240Y H3 1321022A93V01"
+monitor_tag = "monitor1"
+
+[[profiles.docked.conditions.required_monitors]]
+description = "Acer Technologies QG271 TGJEE00885S8"
+monitor_tag = "monitor2"
+
+
+[profiles.lid_closed]
+config_file = "/home/parvez/.config/hyprdynamicmonitors/hyprconfigs/lid_closed.go.tmpl"
+config_file_type = "static"
+
+[profiles.lid_closed.conditions]
+lid_state = "Closed"
+
+[[profiles.lid_closed.conditions.required_monitors]]
+description = "Acer Technologies QG240Y H3 1321022A93V01"
+monitor_tag = "monitor1"
+
+[[profiles.lid_closed.conditions.required_monitors]]
+description = "Acer Technologies QG271 TGJEE00885S8"
+monitor_tag = "monitor2"
+
+
+[profiles.laptop_only]
+config_file = "/home/parvez/.config/hyprdynamicmonitors/hyprconfigs/laptop_only.go.tmpl"
+config_file_type = "static"
+[profiles.laptop_only.conditions]
+lid_state = "Opened"
+
+[[profiles.laptop_only.conditions.required_monitors]]
+description = "AU Optronics 0xAF90"
+monitor_tag = "monitor0"
