@@ -1,5 +1,5 @@
 [general]
-destination = "$HOME/.config/hypr/monitors.conf"
+destination = "$HOME/.config/hypr/monitors-dynamic.lua"
 debounce_time_ms = 2500
 
 [hot_reload_section]
@@ -39,13 +39,13 @@ lid_state_match = 50   # Bonus points for matching lid state requirements
 
 
 [profiles.docked]
-config_file = "/home/parvez/.config/hyprdynamicmonitors/hyprconfigs/docked.go.tmpl"
+config_file = "/home/parvez/.config/hyprdynamicmonitors/hyprconfigs/docked.lua"
 config_file_type = "static"
 [profiles.docked.conditions]
 lid_state = "Opened"
 
 [[profiles.docked.conditions.required_monitors]]
-description = "AU Optronics 0xAF90"
+description = "Chimei Innolux Corporation 0x140A"
 monitor_tag = "monitor0"
 
 [[profiles.docked.conditions.required_monitors]]
@@ -58,7 +58,7 @@ monitor_tag = "monitor2"
 
 
 [profiles.lid_closed]
-config_file = "/home/parvez/.config/hyprdynamicmonitors/hyprconfigs/lid_closed.go.tmpl"
+config_file = "/home/parvez/.config/hyprdynamicmonitors/hyprconfigs/lid_closed.lua"
 config_file_type = "static"
 
 [profiles.lid_closed.conditions]
@@ -74,11 +74,11 @@ monitor_tag = "monitor2"
 
 
 [profiles.laptop_only]
-config_file = "/home/parvez/.config/hyprdynamicmonitors/hyprconfigs/laptop_only.go.tmpl"
+config_file = "/home/parvez/.config/hyprdynamicmonitors/hyprconfigs/laptop_only.lua"
 config_file_type = "static"
 [profiles.laptop_only.conditions]
 lid_state = "Opened"
 
 [[profiles.laptop_only.conditions.required_monitors]]
-description = "AU Optronics 0xAF90"
+description = "Chimei Innolux Corporation 0x140A"
 monitor_tag = "monitor0"
