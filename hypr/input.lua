@@ -27,6 +27,16 @@ hl.config({
   },
 })
 
+-- Force software cursor rendering instead of the GPU/DRM hardware cursor
+-- plane. Carried over from the pre-4.0 input.conf's `cursor { }` block, which
+-- got dropped when the config moved to Lua.
+-- See https://wiki.hypr.land/Configuring/Basics/Variables/#cursor
+hl.config({
+  cursor = {
+    no_hardware_cursors = true,
+  },
+})
+
 -- App-specific touchpad scroll speeds.
 o.window("(Alacritty|kitty|foot)", { scroll_touchpad = 1.5 })
 o.window("com.mitchellh.ghostty", { scroll_touchpad = 1.5 })
